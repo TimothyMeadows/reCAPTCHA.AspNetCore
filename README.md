@@ -1,6 +1,18 @@
 # reCAPTCHA.AspNetCore
 Google reCAPTCHA for ASP.NET Core 2
 
+# Install
+
+From the Nuget Package Manager Console
+
+```bash
+Install-Package reCAPTCHA.AspNetCore
+```
+
+You can also search for package via your nuget ui / website:
+
+https://www.nuget.org/packages/reCAPTCHA.AspNetCore/
+
 # Requirements
 You must first have a **secret key** and a **site key** in order to use the reCAPTCHA service. You can read more about reCAPTCHA as well as sign up for free here: https://www.google.com/recaptcha/intro/
 
