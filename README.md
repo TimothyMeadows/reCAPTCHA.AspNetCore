@@ -54,6 +54,7 @@ public SomeController(IRecaptchaService recaptcha)
 Finally you can validate the recaptcha attempts using the Validate method in the Recaptcha service in your HttpPost method:
 
 ```csharp
+[HttpPost]
 public async Task<IActionResult> SomeMethod(SomeModel model)
 {
   var valid = await _recaptcha.Validate(Request);
