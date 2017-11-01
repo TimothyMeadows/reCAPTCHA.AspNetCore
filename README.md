@@ -57,6 +57,6 @@ Finally you can validate the recaptcha attempts using the Validate method in the
 public async Task<IActionResult> SomeMethod(SomeModel model)
 {
   var valid = await _recaptcha.Validate(Request);
-  return View("Index");
+  return View();
 }
 ```
