@@ -2,7 +2,7 @@
 Google reCAPTCHA for ASP.NET Core 2
 
 # Requirements
-Because this is a google service. You must first have a **secret key** and a **site key** in order to use the reCAPTCHA service. You can read more about reCAPTCHA as well as sign up for free here: https://www.google.com/recaptcha/intro/
+You must first have a **secret key** and a **site key** in order to use the reCAPTCHA service. You can read more about reCAPTCHA as well as sign up for free here: https://www.google.com/recaptcha/intro/
 
 # Configure
 
