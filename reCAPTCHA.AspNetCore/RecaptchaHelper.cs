@@ -8,7 +8,11 @@ namespace reCAPTCHA.AspNetCore
     {
         public static HtmlString Recaptcha(this IHtmlHelper helper, string siteKey)
         {
-            return new HtmlString($"<div class=\"g-recaptcha\" data-sitekey=\"{siteKey}\"></div>");
+            var uid = Guid.NewGuid().ToString();
+            return new HtmlString($"<div id=\"{uid}\" class=\"g-recaptcha\" data-sitekey=\"{siteKey}\"></div>\r\n" +
+                                  "<script>\r\n" +
+                                  $"if (grecaptcha) {{\r\ngrecaptcha.render(\'{uid}\', {{\r\n \'sitekey\' : \'{siteKey}\'\r\n }});\r\n}}\r\n" +
+                                  "</script>");
         }
     }
 }
