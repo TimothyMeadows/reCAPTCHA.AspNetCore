@@ -34,6 +34,11 @@ services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSetting
 services.AddTransient<IRecaptchaService, RecaptchaService>();
 ```
 
+Finally, add the google recaptcha script to your layout / theme as you see fit.
+```html
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+```
+
 # Usage
 
 In order to prevent having to copy and paste your site key all over your view files (a nightmare to update later). You can inject your settings from the Startup method by adding the following code to top of your view file:
@@ -47,6 +52,12 @@ You can then freely include the Recaptcha script inside of forms you wish to vai
 @using (Html.BeginForm("SomeMethod", "SomeController")) {
   @Html.Recaptcha(RecaptchaSettings.Value.SiteKey)
 }
+```
+
+You may find that you need to add a reference to Microsoft.Extensions.Options before you can use IOptions.
+
+```csharp
+@using Microsoft.Extensions.Options
 ```
 
 # Validation
