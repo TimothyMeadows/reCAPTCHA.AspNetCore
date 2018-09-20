@@ -5,7 +5,13 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reCAPTCHA.AspNetCore", "reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore.csproj", "{B7A0FB0E-9874-4FF5-82ED-8C515100A3E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "reCAPTCHA.AspNetCore.Example", "reCAPTCHA.AspNetCore.Example\reCAPTCHA.AspNetCore.Example.csproj", "{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reCAPTCHA.AspNetCore.Example", "reCAPTCHA.AspNetCore.Example\reCAPTCHA.AspNetCore.Example.csproj", "{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{623EE281-0713-4937-95B0-2DFB3C640F74}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
