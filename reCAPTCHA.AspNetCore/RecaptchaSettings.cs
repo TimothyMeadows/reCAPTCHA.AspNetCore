@@ -9,14 +9,14 @@ namespace reCAPTCHA.AspNetCore
         /// <summary>
         /// Google Recaptcha Secret Key
         /// </summary>
-        public string RecaptchaSecretKey { get; set; }
+        public string SecretKey { get; set; }
         /// <summary>
         /// Google Recaptcha Site Key
         /// </summary>
-        public string RecaptchaSiteKey { get; set; }
+        public string SiteKey { get; set; }
         /// <summary>
         /// Google Recaptcha Version
         /// </summary>
-        public string RecaptchaVersion { get; set; }
+        public string Version { get; set; }
     }
 }

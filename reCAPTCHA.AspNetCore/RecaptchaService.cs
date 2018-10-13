@@ -26,7 +26,7 @@ namespace reCAPTCHA.AspNetCore
 
             var response = request.Form["g-recaptcha-response"];
             var client = new HttpClient();
-            var result = await client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={RecaptchaSettings.RecaptchaSecretKey}&response={response}");
+            var result = await client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={response}");
             var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
 
             if (captchaResponse.success && antiForgery)
