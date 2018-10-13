@@ -19,6 +19,12 @@ You must first have a **secret key** and a **site key** in order to use the reCA
 
 Choose how you want to configure the storage of your RecaptchaSettings. This contains your site key, and site secret so it's recommended to use secrets.json with Azure Key Vault (or similar setup). However you can also just add the section to your appconfig.json file.
 
+# Versions
+
+- [v2](https://developers.google.com/recaptcha/docs/display)
+- [v2-invis](https://developers.google.com/recaptcha/docs/invisible)
+- [v3](https://developers.google.com/recaptcha/docs/v3)
+
 #### appconfig.json
 
 Add the follow entry to the file make sure to paste in your secret key and site key followed by setting the correct version to v2 or v3 depending on your key type:
@@ -26,7 +32,7 @@ Add the follow entry to the file make sure to paste in your secret key and site 
 "RecaptchaSettings": {
     "SecretKey": "paste secret key here",
     "SiteKey": "paste site key here",
-    "Version": "will be v2 or v3 depending on your above keys"
+    "Version": "v2"
   } 
 ```
 
@@ -38,7 +44,7 @@ This will open secrets.json. Add the follow entry to the file make sure to paste
 "RecaptchaSettings": {
     "SecretKey": "paste secret key here",
     "SiteKey": "paste site key here",
-    "Version": "will be v2 or v3 depending on your above keys"
+    "Version": "v2"
   } 
 ```
 
