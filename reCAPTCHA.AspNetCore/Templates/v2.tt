@@ -1,11 +1,11 @@
 ﻿<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
 
-<div id="<#= Model.Uid #>" class="g-recaptcha" data-sitekey="<#= Model.Settings.RecaptchaSiteKey #>"></div>
+<div id="<#= Model.Uid #>" class="g-recaptcha" data-sitekey="<#= Model.Settings.SiteKey #>"></div>
 <script>
 	function _<#= Model.Method #>() {
 		if (typeof grecaptcha !== 'undefined')
-			grecaptcha.render('<#= Model.Uid #>', {'sitekey' : '<#= Model.Settings.RecaptchaSiteKey #>', 'theme' : '<#= Model.Theme #>' })
+			grecaptcha.render('<#= Model.Uid #>', {'sitekey' : '<#= Model.Settings.SiteKey #>', 'theme' : '<#= Model.Theme #>' })
 	}
 </script>
 <script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit" async defer></script>

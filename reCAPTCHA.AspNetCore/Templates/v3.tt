@@ -5,10 +5,10 @@
 <script>
 	if (typeof grecaptcha !== 'undefined') {
 		grecaptcha.ready(function () {
-			grecaptcha.execute('<#= Model.Settings.RecaptchaSiteKey #>', { 'action': '<#= Model.Action #>' }).then(function (token) {
+			grecaptcha.execute('<#= Model.Settings.SiteKey #>', { 'action': '<#= Model.Action #>' }).then(function (token) {
 				document.getElementById('g-recaptcha-response').value = token;
 			});
 		});
 	}
 </script>
-<script src="https://www.google.com/recaptcha/api.js?render=<#= Model.Settings.RecaptchaSiteKey #>"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>"></script>

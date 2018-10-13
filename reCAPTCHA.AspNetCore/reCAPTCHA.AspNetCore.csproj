@@ -30,6 +30,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>v2.tt</DependentUpon>
     </Compile>
+    <Compile Update="Templates\v2Invis.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>v2Invis.tt</DependentUpon>
+    </Compile>
     <Compile Update="Templates\v3.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -41,6 +46,10 @@
     <None Update="Templates\v2.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>v2.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\v2Invis.tt">
+      <LastGenOutput>v2Invis.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
     <None Update="Templates\v3.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

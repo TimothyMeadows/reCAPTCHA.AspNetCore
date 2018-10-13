@@ -33,6 +33,14 @@ namespace reCAPTCHA.AspNetCore
                         Method = method,
                         Theme = theme
                     }).TransformText());
+                case "v2-invis":
+                    return new HtmlString(new v2Invis(new v2Model()
+                    {
+                        Settings = settings,
+                        Uid = uid,
+                        Method = method,
+                        Theme = theme
+                    }).TransformText());
                 case "v3":
                     return new HtmlString(new v3(new v3Model()
                     {
