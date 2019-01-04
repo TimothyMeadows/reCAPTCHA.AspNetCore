@@ -30,7 +30,7 @@ namespace reCAPTCHA.AspNetCore
             var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
 
             if (captchaResponse.success && antiForgery)
-                if (captchaResponse.hostname?.ToLower() != request.Host.Value?.ToLower())
+                if (captchaResponse.hostname?.ToLower() != request.Host.Host?.ToLower())
                     throw new ValidationException("Recaptcha host, and request host do not match. Forgery attempt?");
 
             return captchaResponse;
