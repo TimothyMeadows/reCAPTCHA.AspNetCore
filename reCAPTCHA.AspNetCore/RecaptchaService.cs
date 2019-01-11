@@ -12,11 +12,21 @@ namespace reCAPTCHA.AspNetCore
 {
     public class RecaptchaService : IRecaptchaService
     {
+        public static HttpClient Client { get; private set; }
         public readonly RecaptchaSettings RecaptchaSettings;
 
         public RecaptchaService(IOptions<RecaptchaSettings> options)
         {
             RecaptchaSettings = options.Value;
+
+            if(Client == null)
+                Client = new HttpClient();
+        }
+
+        public RecaptchaService(IOptions<RecaptchaSettings> options, HttpClient client)
+        {
+            RecaptchaSettings = options.Value;
+            Client = client;
         }
 
         public async Task<RecaptchaResponse> Validate(HttpRequest request, bool antiForgery = true)
@@ -25,8 +35,7 @@ namespace reCAPTCHA.AspNetCore
                 throw new ValidationException("Google recaptcha response not found in form. Did you forget to include it?");
 
             var response = request.Form["g-recaptcha-response"];
-            var client = new HttpClient();
-            var result = await client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={response}");
+            var result = await Client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={response}");
             var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
 
             if (captchaResponse.success && antiForgery)
