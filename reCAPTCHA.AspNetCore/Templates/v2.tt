@@ -8,4 +8,4 @@
 			grecaptcha.render('<#= Model.Uid #>', {'sitekey' : '<#= Model.Settings.SiteKey #>', 'theme' : '<#= Model.Theme #>' })
 	}
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit&hl=<#= Model.Language #>" async defer></script>

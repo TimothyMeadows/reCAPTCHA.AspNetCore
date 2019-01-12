@@ -16,4 +16,4 @@
 		document.getElementById('g-recaptcha-response').value = token;
 	}
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit" async defer>
+<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit&hl=<#= Model.Language #>" async defer>

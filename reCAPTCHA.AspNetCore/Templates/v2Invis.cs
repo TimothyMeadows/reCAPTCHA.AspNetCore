@@ -63,7 +63,14 @@ namespace reCAPTCHA.AspNetCore.Templates
             
             #line default
             #line hidden
-            this.Write("&render=explicit\" async defer>");
+            this.Write("&render=explicit&hl=");
+            
+            #line 19 "C:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\v2Invis.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Language));
+            
+            #line default
+            #line hidden
+            this.Write("\" async defer>");
             return this.GenerationEnvironment.ToString();
         }
     }

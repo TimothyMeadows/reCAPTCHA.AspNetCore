@@ -17,7 +17,7 @@ namespace reCAPTCHA.AspNetCore
         /// <param name="theme">Google Recaptcha theme default is light</param>
         /// <param name="action">Google Recaptcha v3 <a href="https://developers.google.com/recaptcha/docs/v3#actions">Action</a></param>
         /// <returns>HtmlString with Recaptcha elements</returns>
-        public static HtmlString Recaptcha(this IHtmlHelper helper, RecaptchaSettings settings, string theme = "light", string action = "homepage")
+        public static HtmlString Recaptcha(this IHtmlHelper helper, RecaptchaSettings settings, string theme = "light", string action = "homepage", string language = "en")
         {
             var uid = Guid.NewGuid();
             var method = uid.ToString().Replace("-", "_");
@@ -31,7 +31,8 @@ namespace reCAPTCHA.AspNetCore
                         Settings = settings,
                         Uid = uid,
                         Method = method,
-                        Theme = theme
+                        Theme = theme,
+                        Language = language
                     }).TransformText());
                 case "v2-invis":
                     return new HtmlString(new v2Invis(new v2Model()
@@ -39,14 +40,16 @@ namespace reCAPTCHA.AspNetCore
                         Settings = settings,
                         Uid = uid,
                         Method = method,
-                        Theme = theme
+                        Theme = theme,
+                        Language = language
                     }).TransformText());
                 case "v3":
                     return new HtmlString(new v3(new v3Model()
                     {
                         Settings = settings,
                         Uid = uid,
-                        Action = action
+                        Action = action,
+                        Language = language
                     }).TransformText());
             }
         }

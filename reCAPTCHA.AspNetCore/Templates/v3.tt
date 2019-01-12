@@ -2,7 +2,7 @@
 <#@ assembly name="System.Core" #>
 
 <input id="g-recaptcha-response" name="g-recaptcha-response" type="hidden" value="" />
-<script src="https://www.google.com/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>&hl=<#= Model.Language #>"></script>
 <script>
 	if (typeof grecaptcha !== 'undefined') {
 		grecaptcha.ready(function () {
