@@ -1,4 +1,6 @@
 # reCAPTCHA.AspNetCore
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![nuget](https://img.shields.io/nuget/v/reCAPTCHA.AspNetCore.svg)](https://www.nuget.org/packages/reCAPTCHA.AspNetCore/)
+
 Google reCAPTCHA v2/v3 for ASP.NET Core 2
 
 # Install
