@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.2.0</Version>
+    <Authors>Timothy D Meadows II</Authors>
+    <PackageLicenseUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <Description>Google reCAPTCHA 2/3 for ASP.NET Core 2, and, .NET Standard 2</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
