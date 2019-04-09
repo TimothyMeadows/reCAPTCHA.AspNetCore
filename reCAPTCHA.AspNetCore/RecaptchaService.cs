@@ -15,6 +15,14 @@ namespace reCAPTCHA.AspNetCore
         public static HttpClient Client { get; private set; }
         public readonly RecaptchaSettings RecaptchaSettings;
 
+        public RecaptchaService(RecaptchaSettings options)
+        {
+            RecaptchaSettings = options;
+
+            if (Client == null)
+                Client = new HttpClient();
+        }
+
         public RecaptchaService(IOptions<RecaptchaSettings> options)
         {
             RecaptchaSettings = options.Value;
@@ -26,6 +34,12 @@ namespace reCAPTCHA.AspNetCore
         public RecaptchaService(IOptions<RecaptchaSettings> options, HttpClient client)
         {
             RecaptchaSettings = options.Value;
+            Client = client;
+        }
+
+        public RecaptchaService(RecaptchaSettings options, HttpClient client)
+        {
+            RecaptchaSettings = options;
             Client = client;
         }
 
