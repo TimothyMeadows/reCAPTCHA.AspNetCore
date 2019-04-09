@@ -1,19 +1,23 @@
 ﻿<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
 
-<input id="g-recaptcha-response" name="g-recaptcha-response" type="hidden" value="" />
 <script>
 	function _<#= Model.Method #>() {
 		if (typeof grecaptcha !== 'undefined') {
-			grecaptcha.render('submit', {
+			grecaptcha.render('<#= Model.Id #>', {
 				'sitekey' : '<#= Model.Settings.SiteKey #>',
 				'callback' : _<#= Model.Method #>_
-          });
+			});
+
+			document.getElementById('<#= Model.Id #>').onclick = function(e) {
+				e.preventDefault();
+				grecaptcha.execute();
+			};
 		}
 	}
 
 	function _<#= Model.Method #>_(token) {
-		document.getElementById('g-recaptcha-response').value = token;
+		document.getElementById('<#= Model.Id #>').form.submit();
 	}
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit&hl=<#= Model.Language #>" async defer>
+<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit&hl=<#= Model.Language #>" async defer></script>
