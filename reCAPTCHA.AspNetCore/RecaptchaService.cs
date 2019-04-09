@@ -58,5 +58,15 @@ namespace reCAPTCHA.AspNetCore
 
             return captchaResponse;
         }
+
+        public async Task<RecaptchaResponse> Validate(string responseCode)
+        {
+            if (string.IsNullOrEmpty(responseCode))
+                throw new ValidationException("Google recaptcha response is empty?");
+
+            var result = await Client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={responseCode}");
+            var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
+            return captchaResponse;
+        }
     }
 }
