@@ -130,4 +130,6 @@ public async Task<IActionResult> SomeMethod(SomeModel model)
 }
 ```
 
+*Warning: This method DOES NOT check for anti-forgery like validating with HttpRequest does.*
+
 You can see a tested example of usage in the [HomeController.cs](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/blob/master/reCAPTCHA.AspNetCore.Example/Controllers/HomeController.cs) controller. However you will need to configure it with your key information before running yourself. You should also take note of the allowed domains security policy in the Google Recaptcha docs.
