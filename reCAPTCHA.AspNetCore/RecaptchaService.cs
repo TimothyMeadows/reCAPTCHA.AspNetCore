@@ -15,14 +15,6 @@ namespace reCAPTCHA.AspNetCore
         public static HttpClient Client { get; private set; }
         public readonly RecaptchaSettings RecaptchaSettings;
 
-        public RecaptchaService(RecaptchaSettings options)
-        {
-            RecaptchaSettings = options;
-
-            if (Client == null)
-                Client = new HttpClient();
-        }
-
         public RecaptchaService(IOptions<RecaptchaSettings> options)
         {
             RecaptchaSettings = options.Value;
@@ -34,12 +26,6 @@ namespace reCAPTCHA.AspNetCore
         public RecaptchaService(IOptions<RecaptchaSettings> options, HttpClient client)
         {
             RecaptchaSettings = options.Value;
-            Client = client;
-        }
-
-        public RecaptchaService(RecaptchaSettings options, HttpClient client)
-        {
-            RecaptchaSettings = options;
             Client = client;
         }
 
@@ -56,16 +42,6 @@ namespace reCAPTCHA.AspNetCore
                 if (captchaResponse.hostname?.ToLower() != request.Host.Host?.ToLower())
                     throw new ValidationException("Recaptcha host, and request host do not match. Forgery attempt?");
 
-            return captchaResponse;
-        }
-
-        public async Task<RecaptchaResponse> Validate(string responseCode)
-        {
-            if (string.IsNullOrEmpty(responseCode))
-                throw new ValidationException("Google recaptcha response is empty?");
-
-            var result = await Client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={responseCode}");
-            var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
             return captchaResponse;
         }
     }
