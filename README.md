@@ -1,13 +1,17 @@
 # reCAPTCHA.AspNetCore
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![nuget](https://img.shields.io/nuget/v/reCAPTCHA.AspNetCore.svg)](https://www.nuget.org/packages/reCAPTCHA.AspNetCore/)
 
-Google reCAPTCHA v2/v3 for ASP.NET Core 2
+Google reCAPTCHA v2/v3 for .NET Standard 2.0, ASP.NET Core 2, and .NET Framework.
 
 # Install
 
 From the a command prompt
 ```bash
 dotnet add package reCAPTCHA.AspNetCore
+```
+
+```bash
+Install-Package reCAPTCHA.AspNetCore
 ```
 
 You can also search for package via your nuget ui / website:
@@ -98,7 +102,7 @@ public SomeController(IRecaptchaService recaptcha)
 }
 ```
 
-Finally you can validate the recaptcha attempts using the Validate method in the Recaptcha service in your HttpPost method:
+You can validate the recaptcha attempts using the Validate method in the Recaptcha service in your HttpPost method:
 
 ```csharp
 [HttpPost]
@@ -106,9 +110,23 @@ public async Task<IActionResult> SomeMethod(SomeModel model)
 {
   var recaptcha = await _recaptcha.Validate(Request);
     if (!recaptcha.success)
-        ModelState.AddModelError("Recaptcha", "There was an error validating recatpcha. Please try again!");
+        ModelState.AddModelError("", "There was an error validating recatpcha. Please try again!");
 
   return View(model);
+}
+```
+
+WebApi users who do not have access to the original HttpRequest that created the recaptcha response can use the following method to validate response codes.
+
+```csharp
+[HttpPost]
+public async Task<IActionResult> SomeMethod(SomeModel model)
+{
+  var recaptcha = await _recaptcha.Validate(model.ResponseCode);
+    if (!recaptcha.success)
+        ModelState.AddModelError("", "There was an error validating recatpcha. Please try again!");
+
+  return Json(model);
 }
 ```
 
