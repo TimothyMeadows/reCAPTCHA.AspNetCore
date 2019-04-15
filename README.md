@@ -133,3 +133,11 @@ public async Task<IActionResult> SomeMethod(SomeModel model)
 *Warning: This method DOES NOT check for anti-forgery like validating with HttpRequest does.*
 
 You can see a tested example of usage in the [HomeController.cs](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/blob/master/reCAPTCHA.AspNetCore.Example/Controllers/HomeController.cs) controller. However you will need to configure it with your key information before running yourself. You should also take note of the allowed domains security policy in the Google Recaptcha docs.
+
+# Recaptcha.net
+
+Users who suffer from censorship concerns can now bypass the libraries default of www.google.com to www.recaptcha.net using the following static variable in the RecaptchaService class. You can best set this static during the ConfigureService method.
+
+```csharp
+RecapthaService.UseRecapchaNet = true; // Default is false
+```
