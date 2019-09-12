@@ -80,6 +80,20 @@ You can then freely include the Recaptcha script inside of forms you wish to vai
 }
 ```
 
+If you wish to trigger a JavaScript function on callback you can pass a method name to the Html helper.
+```csharp
+@using (Html.BeginForm("SomeMethod", "SomeController")) {
+  @Html.Recaptcha(RecaptchaSettings.Value, successCallback:"methodName")
+}
+```
+```html
+<script>
+  function methodName() {
+    alert('Hello world!');
+  }
+</script>
+```
+
 You may find that you need to add a reference to Microsoft.Extensions.Options before you can use IOptions.
 
 ```csharp

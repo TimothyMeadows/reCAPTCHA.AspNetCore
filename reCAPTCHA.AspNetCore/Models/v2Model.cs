@@ -12,5 +12,8 @@ namespace reCAPTCHA.AspNetCore.Models
         public string Theme { get; set; }
         public string Language { get; set; }
         public RecaptchaSettings Settings { get; set; }
+        public string SuccessCallback { get; set; }
+        public string ErrorCallback { get; set; }
+        public string ExpiredCallback { get; set; }
     }
 }
