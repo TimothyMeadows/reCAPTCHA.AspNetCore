@@ -6,7 +6,13 @@
 		if (typeof grecaptcha !== 'undefined') {
 			grecaptcha.render('<#= Model.Id #>', {
 				'sitekey' : '<#= Model.Settings.SiteKey #>',
-				'callback' : _<#= Model.Method #>_
+				'callback' : _<#= Model.Method #>_,
+				<# if (!string.IsNullOrEmpty(Model.ErrorCallback)) { #>
+				'error-callback' : '<#= Model.ErrorCallback #>',
+				<# } #>
+				<# if (!string.IsNullOrEmpty(Model.ExpiredCallback)) { #>
+				'expired-callback' : '<#= Model.ExpiredCallback #>',
+				<# } #>
 			});
 
 			document.getElementById('<#= Model.Id #>').onclick = function(e) {
@@ -18,6 +24,9 @@
 
 	function _<#= Model.Method #>_(token) {
 		document.getElementById('<#= Model.Id #>').form.submit();
+		<# if (!string.IsNullOrEmpty(Model.SuccessCallback)) { #>
+		<#= Model.SuccessCallback #>(token);
+		<# } #>
 	}
 </script>
 <script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Method #>&render=explicit&hl=<#= Model.Language #>" async defer></script>

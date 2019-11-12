@@ -18,8 +18,11 @@ namespace reCAPTCHA.AspNetCore
         /// <param name="action">Google Recaptcha v3 <a href="https://developers.google.com/recaptcha/docs/v3#actions">Action</a></param>
         /// <param name="language">Google Recaptcha <a href="https://developers.google.com/recaptcha/docs/language">Language Code</a></param>
         /// <param name="id">Google Recaptcha v2-invis button id. This id can't be named submit due to a naming bug.</param>
+        /// <param name="successCallback">Google Recaptcha v2/v2-invis success callback method.</param>
+        /// <param name="errorCallback">Google Recaptcha v2/v2-invis error callback method.</param>
+        /// <param name="expiredCallback">Google Recaptcha v2/v2-invis expired callback method.</param>
         /// <returns>HtmlString with Recaptcha elements</returns>
-        public static HtmlString Recaptcha(this IHtmlHelper helper, RecaptchaSettings settings, string theme = "light", string action = "homepage", string language = "en", string id = "recaptcha")
+        public static HtmlString Recaptcha(this IHtmlHelper helper, RecaptchaSettings settings, string theme = "light", string action = "homepage", string language = "en", string id = "recaptcha", string successCallback = null, string errorCallback = null, string expiredCallback = null)
         {
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentException("id can't be null");
@@ -40,7 +43,10 @@ namespace reCAPTCHA.AspNetCore
                         Uid = uid,
                         Method = method,
                         Theme = theme,
-                        Language = language
+                        Language = language,
+                        SuccessCallback = successCallback,
+                        ErrorCallback = errorCallback,
+                        ExpiredCallback = expiredCallback
                     }).TransformText());
                 case "v2-invis":
                     return new HtmlString(new v2Invis(new v2Model()
@@ -50,7 +56,10 @@ namespace reCAPTCHA.AspNetCore
                         Uid = uid,
                         Method = method,
                         Theme = theme,
-                        Language = language
+                        Language = language,
+                        SuccessCallback = successCallback,
+                        ErrorCallback = errorCallback,
+                        ExpiredCallback = expiredCallback
                     }).TransformText());
                 case "v3":
                     return new HtmlString(new v3(new v3Model()
