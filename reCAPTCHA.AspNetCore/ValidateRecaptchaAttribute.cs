@@ -11,42 +11,46 @@ namespace reCAPTCHA.AspNetCore
     [AttributeUsage(AttributeTargets.Method, Inherited = false)]
     public class ValidateRecaptchaAttribute : Attribute, IFilterFactory
     {
-        private readonly string _recaptchaModelErrorMessage;
-        private readonly bool _antiForgery;
+        private readonly string _action;
+        private readonly string _modelErrorMessage;
+        private readonly decimal _minimumScore;
 
         public bool IsReusable => true;
-
-        public ValidateRecaptchaAttribute(string recaptchaModelErrorMessage = "Your request cannot be completed because you failed Recaptcha verification.", bool antiForgery = true)
+        
+        public ValidateRecaptchaAttribute(string action, string modelErrorMessage = "Your request cannot be completed because you failed Recaptcha verification.", double minimumScore = 0.5)
         {
-            _recaptchaModelErrorMessage = recaptchaModelErrorMessage;
-            _antiForgery = antiForgery;
+            _action = action;
+            _modelErrorMessage = modelErrorMessage;
+            _minimumScore = (decimal) minimumScore;
         }
 
         public IFilterMetadata CreateInstance(IServiceProvider services)
         {
-            var filter = services.GetService<ValidateRecaptchaFilter>();
-            filter.RecaptchaModelErrorMessage = _recaptchaModelErrorMessage;
-            filter.AntiForgery = _antiForgery;
-            return filter;
+            var recaptchaService = services.GetService<IRecaptchaService>();
+            return new ValidateRecaptchaFilter(recaptchaService, _action, _modelErrorMessage, _minimumScore);
         }
     }
 
     public class ValidateRecaptchaFilter : IAsyncActionFilter
     {
         private readonly IRecaptchaService _recaptcha;
+        private readonly string _action;
+        private readonly string _modelErrorMessage;
+        private readonly decimal _minimumScore;
 
-        public string RecaptchaModelErrorMessage { private get; set; }
-        public bool AntiForgery { private get; set; }
-
-        public ValidateRecaptchaFilter(IRecaptchaService recaptcha)
+        public ValidateRecaptchaFilter(IRecaptchaService recaptcha, string action, string modelErrorMessage, decimal minimumScore)
         {
             _recaptcha = recaptcha;
+            _action = action;
+            _modelErrorMessage = modelErrorMessage;
+            _minimumScore = minimumScore;
         }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var recaptcha = await _recaptcha.Validate(context.HttpContext.Request, AntiForgery).ConfigureAwait(true);
-            if (!recaptcha.success) context.ModelState.AddModelError("", RecaptchaModelErrorMessage);
+            var recaptcha = await _recaptcha.Validate(context.HttpContext.Request);
+            if (!recaptcha.success || recaptcha.action == _action || recaptcha.score < _minimumScore) context.ModelState.AddModelError("", _modelErrorMessage);
+            next();
         }
     }
 }
