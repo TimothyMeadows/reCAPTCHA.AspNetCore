@@ -49,7 +49,7 @@ namespace reCAPTCHA.AspNetCore
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var recaptcha = await _recaptcha.Validate(context.HttpContext.Request);
-            if (!recaptcha.success || recaptcha.action == _action || recaptcha.score < _minimumScore) context.ModelState.AddModelError("", _modelErrorMessage);
+            if (!recaptcha.success || recaptcha.action != _action || recaptcha.score < _minimumScore) context.ModelState.AddModelError("", _modelErrorMessage);
             next();
         }
     }
