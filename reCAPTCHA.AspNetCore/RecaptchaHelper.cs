@@ -24,6 +24,8 @@ namespace reCAPTCHA.AspNetCore
         /// <returns>HtmlString with Recaptcha elements</returns>
         public static HtmlString Recaptcha(this IHtmlHelper helper, RecaptchaSettings settings, string theme = "light", string action = "homepage", string language = "en", string id = "recaptcha", string successCallback = null, string errorCallback = null, string expiredCallback = null)
         {
+            if (!settings.Enabled) return new HtmlString("<!-- Google Recaptcha disabled -->");
+
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentException("id can't be null");
 

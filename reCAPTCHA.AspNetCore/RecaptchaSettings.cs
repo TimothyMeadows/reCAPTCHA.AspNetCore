@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace reCAPTCHA.AspNetCore
+﻿namespace reCAPTCHA.AspNetCore
 {
     public class RecaptchaSettings
     {
+        /// <summary>
+        /// Google Recaptcha enabled
+        /// </summary>
+        public bool Enabled { get; set; } = true;
         /// <summary>
         /// Google Recaptcha Secret Key
         /// </summary>
