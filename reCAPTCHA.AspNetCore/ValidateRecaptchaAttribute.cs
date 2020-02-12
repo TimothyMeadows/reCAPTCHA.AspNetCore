@@ -17,7 +17,7 @@ namespace reCAPTCHA.AspNetCore
 
         public bool IsReusable => true;
         
-        public ValidateRecaptchaAttribute(string action, string modelErrorMessage = "Your request cannot be completed because you failed Recaptcha verification.", double minimumScore = 0.5)
+        public ValidateRecaptchaAttribute(string action = "homepage", string modelErrorMessage = "Your request cannot be completed because you failed Recaptcha verification.", double minimumScore = 0.5)
         {
             _action = action;
             _modelErrorMessage = modelErrorMessage;
@@ -49,7 +49,8 @@ namespace reCAPTCHA.AspNetCore
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var recaptcha = await _recaptcha.Validate(context.HttpContext.Request);
-            if (!recaptcha.success || recaptcha.action != _action || recaptcha.score < _minimumScore) context.ModelState.AddModelError("", _modelErrorMessage);
+            if (!recaptcha.success || recaptcha.action != _action || recaptcha.score < _minimumScore) 
+                context.ModelState.AddModelError("Recaptcha", _modelErrorMessage);
             next();
         }
     }
