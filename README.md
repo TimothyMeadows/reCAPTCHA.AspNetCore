@@ -36,6 +36,7 @@ Choose how you want to configure the storage of your RecaptchaSettings. This con
 Add the follow entry to the file make sure to paste in your secret key and site key followed by setting the correct version to v2 or v3 depending on your key type:
 ```json
 "RecaptchaSettings": {
+    "Enabled": true,
     "SecretKey": "paste secret key here",
     "SiteKey": "paste site key here",
     "Version": "v2"
