@@ -52,7 +52,7 @@ namespace reCAPTCHA.AspNetCore
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            if (_enabled)
+           if (_enabled)
             {
                 var recaptcha = await _recaptcha.Validate(context.HttpContext.Request);
                 if (!recaptcha.success || recaptcha.action != _action || recaptcha.score < _minimumScore)

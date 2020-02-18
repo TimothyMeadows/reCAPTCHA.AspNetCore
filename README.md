@@ -106,46 +106,16 @@ You can see a tested example of usage in the [Contact.cshtml](https://github.com
 
 # Validation
 
-In order to validate a recaptcha script being used in a form you will first need to inject the IRecaptchaService class into your controller using the code below:
-
-```csharp
-private IRecaptchaService _recaptcha;
-
-public SomeController(IRecaptchaService recaptcha)
-{
-  _recaptcha = recaptcha;
-}
-```
-
-You can validate the recaptcha attempts using the Validate method in the Recaptcha service in your HttpPost method:
+You can validate the recaptcha attempts using the ValidateRecaptchaAttribute on your HttpPost method:
 
 ```csharp
 [HttpPost]
+[ValidateRecaptcha]
 public async Task<IActionResult> SomeMethod(SomeModel model)
 {
-  var recaptcha = await _recaptcha.Validate(Request);
-    if (!recaptcha.success)
-        ModelState.AddModelError("", "There was an error validating recatpcha. Please try again!");
-
   return View(model);
 }
 ```
-
-WebApi users who do not have access to the original HttpRequest that created the recaptcha response can use the following method to validate response codes.
-
-```csharp
-[HttpPost]
-public async Task<IActionResult> SomeMethod(SomeModel model)
-{
-  var recaptcha = await _recaptcha.Validate(model.ResponseCode);
-    if (!recaptcha.success)
-        ModelState.AddModelError("", "There was an error validating recatpcha. Please try again!");
-
-  return Json(model);
-}
-```
-
-*Warning: This method DOES NOT check for anti-forgery like validating with HttpRequest does.*
 
 You can see a tested example of usage in the [HomeController.cs](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/blob/master/reCAPTCHA.AspNetCore.Example/Controllers/HomeController.cs) controller. However you will need to configure it with your key information before running yourself. You should also take note of the allowed domains security policy in the Google Recaptcha docs.
 
