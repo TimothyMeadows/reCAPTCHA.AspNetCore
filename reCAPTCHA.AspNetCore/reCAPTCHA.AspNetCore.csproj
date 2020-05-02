@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.2.5</Version>
+    <Authors>Timothy D Meadows II</Authors>
+    <PackageLicenseUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <Description>Google reCAPTCHA 2/3 for ASP.NET Core 2, and, .NET Standard 2</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Templates\v2.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>v2.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\v2Invis.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>v2Invis.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\v3.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>v3.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\v2.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>v2.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\v2Invis.tt">
+      <LastGenOutput>v2Invis.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+    <None Update="Templates\v3.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>v3.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

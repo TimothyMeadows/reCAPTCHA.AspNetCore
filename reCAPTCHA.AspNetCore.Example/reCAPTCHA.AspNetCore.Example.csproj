@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <UserSecretsId>e6bb3e8e-3992-4310-aef2-7a3fc91f396f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>

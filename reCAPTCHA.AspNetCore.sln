@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reCAPTCHA.AspNetCore", "reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore.csproj", "{B7A0FB0E-9874-4FF5-82ED-8C515100A3E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reCAPTCHA.AspNetCore.Example", "reCAPTCHA.AspNetCore.Example\reCAPTCHA.AspNetCore.Example.csproj", "{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{623EE281-0713-4937-95B0-2DFB3C640F74}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7A0FB0E-9874-4FF5-82ED-8C515100A3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A0FB0E-9874-4FF5-82ED-8C515100A3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A0FB0E-9874-4FF5-82ED-8C515100A3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A0FB0E-9874-4FF5-82ED-8C515100A3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17725EA-E7E2-4CFC-B87B-1746CF82FCB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81A6A8D9-3EB8-47E8-A3BE-FCE4984CCC29}
+	EndGlobalSection
+EndGlobal

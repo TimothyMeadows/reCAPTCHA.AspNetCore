@@ -1,0 +1,39 @@
+﻿@using Microsoft.Extensions.Options
+@using reCAPTCHA.AspNetCore
+
+@model ContactModel
+@inject IOptions<RecaptchaSettings> RecaptchaSettings
+
+@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+<address>
+    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Message)
+            <br />
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = "3", style = "width: 300px;" })
+        </div>
+        <div class="form-group">
+            @Html.Recaptcha(RecaptchaSettings?.Value)
+        </div>
+        <button id="recaptcha" type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+}
