@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Templates\RecaptchaV2Checkbox.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecaptchaV2Checkbox.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\RecaptchaV2Invisible.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecaptchaV2Invisible.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\RecaptchaV3HiddenInput.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecaptchaV3HiddenInput.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\RecaptchaV2Checkbox.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RecaptchaV2Checkbox.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\RecaptchaV2Invisible.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RecaptchaV2Invisible.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\RecaptchaV3HiddenInput.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RecaptchaV3HiddenInput.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
