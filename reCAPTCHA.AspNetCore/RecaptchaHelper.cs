@@ -19,12 +19,23 @@ namespace reCAPTCHA.AspNetCore
             if (settings == null)
                 throw new ArgumentException("settings can't be null");
 
+            var name = typeof(T)?.Name;
+            object instance;
             if (model == null)
-                throw new ArgumentException("model can't be null");
+            {
+                instance = name switch
+                {
+                    nameof(RecaptchaV2Checkbox) => new RecaptchaV2Checkbox { Settings = settings },
+                    nameof(RecaptchaV2Invisible) => new RecaptchaV2Invisible { Settings = settings },
+                    nameof(RecaptchaV3HiddenInput) => new RecaptchaV3HiddenInput { Settings = settings },
+                    _ => throw new ArgumentException(
+                        $"Unknown type '{name}' passed as recaptcha version. Please use a valid type for T when using the Recaptcha method.")
+                };
+            }
+            else
+                instance = Convert.ChangeType(model, typeof(T));
 
             string body;
-            var instance = Convert.ChangeType(model, typeof(T));
-            var name = nameof(T);
             switch (name)
             {
                 case nameof(RecaptchaV2Checkbox):
@@ -40,7 +51,8 @@ namespace reCAPTCHA.AspNetCore
                     body = new Templates.RecaptchaV3HiddenInput(v3).TransformText();
                     break;
                 default:
-                    throw new ArgumentException($"Unknown type '{name}' passed as recaptcha version. Please use a valid type for T when using the Recaptcha method.");
+                    body = string.Empty;
+                    break;
             }
 
             return new HtmlString(body);

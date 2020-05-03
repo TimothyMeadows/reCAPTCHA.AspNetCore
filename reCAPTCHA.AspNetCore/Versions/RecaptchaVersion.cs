@@ -9,8 +9,8 @@ namespace reCAPTCHA.AspNetCore.Versions
     /// </summary>
     public class RecaptchaVersion
     {
-        public Guid Uid { get; set; }
-        public string Language { get; set; }
+        public Guid Uid { get; set; } = Guid.NewGuid();
+        public string Language { get; set; } = "en";
         public RecaptchaSettings Settings { get; set; }
     }
 }
