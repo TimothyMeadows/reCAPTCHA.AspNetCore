@@ -51,6 +51,29 @@ This will open secrets.json. Add the follow entry to the file make sure to paste
 
 *Note: This will also require you to have a setup such as Azure Key Vault (or similar setup) when running in production.*
 
+#### Content Security Policy
+
+If you use a content security policy you can specify the values for script-src, and frame-src using the below example. Note that you should also make sure the Site option used for those who suffer from censorship matches the values you are using. The default value for Site is www.google.com.
+
+```json
+"RecaptchaSettings": {
+    "SecretKey": "paste secret key here",
+    "SiteKey": "paste site key here",
+    "ContentSecurityPolicy": "https://www.google.com/recaptcha/"
+  } 
+```
+
+This is an example for those that have to use recaptcha.net which would also have to change the site value:
+
+```json
+"RecaptchaSettings": {
+    "SecretKey": "paste secret key here",
+    "SiteKey": "paste site key here",
+    "Site": "www.recaptcha.net",
+    "ContentSecurityPolicy": "https://www.recaptcha.net/recaptcha/"
+  } 
+```
+
 # Versions
 
 These are the currently supported versions. Below is also the list of class names for T when using ```Html.Recaptcha<T>```
@@ -86,7 +109,7 @@ You can then freely include the Recaptcha script inside of forms you wish to vai
 If you wish to trigger a JavaScript function on callback you can pass a method name to the Html helper.
 ```csharp
 @using (Html.BeginForm("SomeMethod", "SomeController")) {
-  @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings?.Value, successCallback:"methodName"))
+  @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings?.Value, new RecaptchaV2Checkbox { successCallback:"methodName") })
 }
 ```
 ```html
