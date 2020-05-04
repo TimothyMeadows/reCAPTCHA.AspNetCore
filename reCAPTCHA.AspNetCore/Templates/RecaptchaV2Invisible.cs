@@ -141,7 +141,56 @@ namespace reCAPTCHA.AspNetCore.Templates
             
             #line default
             #line hidden
-            this.Write("\t}\r\n</script>\r\n<script src=\"https://www.google.com/recaptcha/api.js?onload=_");
+            this.Write("\t}\r\n</script>\r\n<script ");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
+            
+            #line default
+            #line hidden
+            this.Write("script-src=\"");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
+            
+            #line default
+            #line hidden
+            this.Write("frame-src=\"");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(" src=\"https://");
+            
+            #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.Site));
+            
+            #line default
+            #line hidden
+            this.Write("/recaptcha/api.js?onload=_");
             
             #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Uid.ToString().Replace("-", "_")));

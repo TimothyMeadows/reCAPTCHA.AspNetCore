@@ -193,8 +193,56 @@ namespace reCAPTCHA.AspNetCore.Templates
             
             #line default
             #line hidden
-            this.Write("\t\t\t})\r\n\t}\r\n</script>\r\n<script src=\"https://www.google.com/recaptcha/api.js?onload" +
-                    "=_");
+            this.Write("\t\t\t})\r\n\t}\r\n</script>\r\n<script ");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
+            
+            #line default
+            #line hidden
+            this.Write("script-src=\"");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
+            
+            #line default
+            #line hidden
+            this.Write("frame-src=\"");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(" src=\"https://");
+            
+            #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.Site));
+            
+            #line default
+            #line hidden
+            this.Write("/recaptcha/api.js?onload=_");
             
             #line 23 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Checkbox.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Uid.ToString().Replace("-", "_")));

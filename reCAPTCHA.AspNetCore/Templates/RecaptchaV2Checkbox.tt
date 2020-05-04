@@ -20,4 +20,4 @@
 			})
 	}
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=_<#= Model.Uid.ToString().Replace("-", "_") #>&render=explicit&hl=<#= Model.Language #>" async defer></script>
+<script <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>script-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>frame-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> src="https://<#= Model.Settings.Site #>/recaptcha/api.js?onload=_<#= Model.Uid.ToString().Replace("-", "_") #>&render=explicit&hl=<#= Model.Language #>" async defer></script>

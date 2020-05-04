@@ -29,7 +29,56 @@ namespace reCAPTCHA.AspNetCore.Templates
         public virtual string TransformText()
         {
             this.Write("\r\n<input id=\"g-recaptcha-response\" name=\"g-recaptcha-response\" type=\"hidden\" valu" +
-                    "e=\"\" />\r\n<script src=\"https://www.google.com/recaptcha/api.js?render=");
+                    "e=\"\" />\r\n<script ");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
+            
+            #line default
+            #line hidden
+            this.Write("script-src=\"");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
+            
+            #line default
+            #line hidden
+            this.Write("frame-src=\"");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(" src=\"https://");
+            
+            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.Site));
+            
+            #line default
+            #line hidden
+            this.Write("/recaptcha/api.js?render=");
             
             #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.SiteKey));

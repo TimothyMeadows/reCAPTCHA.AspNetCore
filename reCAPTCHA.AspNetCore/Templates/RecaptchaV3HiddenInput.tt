@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <input id="g-recaptcha-response" name="g-recaptcha-response" type="hidden" value="" />
-<script src="https://www.google.com/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>&hl=<#= Model.Language #>"></script>
+<script <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>script-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>frame-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> src="https://<#= Model.Settings.Site #>/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>&hl=<#= Model.Language #>"></script>
 <script>
 	if (typeof grecaptcha !== 'undefined') {
 		grecaptcha.ready(function () {
