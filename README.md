@@ -116,7 +116,7 @@ You can then freely include the Recaptcha script inside of forms you wish to vai
 If you wish to trigger a JavaScript function on callback you can pass a method name to the Html helper.
 ```csharp
 @using (Html.BeginForm("SomeMethod", "SomeController")) {
-  @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings?.Value, new RecaptchaV2Checkbox { successCallback:"methodName") })
+  @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings?.Value, new RecaptchaV2Checkbox { successCallback = "methodName" }))
 }
 ```
 ```html
