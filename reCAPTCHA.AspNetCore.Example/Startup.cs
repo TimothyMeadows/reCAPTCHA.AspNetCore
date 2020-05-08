@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +20,14 @@ namespace reCAPTCHA.AspNetCore.Example
         {
             services.AddControllersWithViews();
 
-            services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSettings"));
-            services.AddTransient<IRecaptchaService, RecaptchaService>();
+            services.AddRecaptcha(Configuration.GetSection("RecaptchaSettings"));
+
+            // Or Configure recaptcha via options
+            //services.AddRecaptcha(options =>
+            //{
+            //    options.SecretKey = "";
+            //    options.SiteKey = "";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -84,11 +84,18 @@ These are the currently supported versions. Below is also the list of class name
 
 # Examples
 
-Open Startup.cs and add the following code as shown below to your ConfigureServices method:
+Open `Startup.cs` and add the following code as shown below to your `ConfigureServices` method:
 
 ```csharp
-services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSettings"));
-services.AddTransient<IRecaptchaService, RecaptchaService>();
+// Add recaptcha and pass recaptcha configuration section
+services.AddRecaptcha(Configuration.GetSection("RecaptchaSettings"));
+
+// Or configure recaptcha via options
+services.AddRecaptcha(options =>
+{
+    options.SecretKey = "Your secret key";
+    options.SiteKey = "Your site key";
+});
 ```
 
 # Usage

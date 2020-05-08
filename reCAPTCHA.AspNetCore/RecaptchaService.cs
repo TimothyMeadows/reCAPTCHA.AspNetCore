@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace reCAPTCHA.AspNetCore
 {
@@ -27,7 +24,7 @@ namespace reCAPTCHA.AspNetCore
         {
             RecaptchaSettings = options.Value;
 
-            if(Client == null)
+            if (Client == null)
                 Client = new HttpClient();
         }
 
@@ -50,7 +47,7 @@ namespace reCAPTCHA.AspNetCore
 
             var response = request.Form["g-recaptcha-response"];
             var result = await Client.GetStringAsync($"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={response}");
-            var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
+            var captchaResponse = JsonSerializer.Deserialize<RecaptchaResponse>(result);
 
             if (captchaResponse.success && antiForgery)
                 if (captchaResponse.hostname?.ToLower() != request.Host.Host?.ToLower())
@@ -65,7 +62,7 @@ namespace reCAPTCHA.AspNetCore
                 throw new ValidationException("Google recaptcha response is empty?");
 
             var result = await Client.GetStringAsync($"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={responseCode}");
-            var captchaResponse = JsonConvert.DeserializeObject<RecaptchaResponse>(result);
+            var captchaResponse = JsonSerializer.Deserialize<RecaptchaResponse>(result);
 
             return captchaResponse;
         }
