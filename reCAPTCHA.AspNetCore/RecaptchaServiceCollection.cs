@@ -7,7 +7,7 @@ namespace reCAPTCHA.AspNetCore
     /// <summary>
     /// Extension methods for adding reCAPTCHA services to the DI container.
     /// </summary>
-    public static class ServiceCollectionExtensions
+    public static class RecaptchaServiceCollection
     {
         /// <summary>
         /// Adds services required for using reCAPTCHA.

@@ -8,18 +8,20 @@ namespace reCAPTCHA.AspNetCore.Attributes
     {
         private readonly IRecaptchaService _recaptcha;
         private readonly double _minimumScore;
+        private readonly string _errorMessage;
 
-        public ValidateRecaptchaFilter(IRecaptchaService recaptcha, double minimumScore)
+        public ValidateRecaptchaFilter(IRecaptchaService recaptcha, double minimumScore, string errorMessage)
         {
             _recaptcha = recaptcha;
             _minimumScore = minimumScore;
+            _errorMessage = errorMessage;
         }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var recaptcha = await _recaptcha.Validate(context.HttpContext.Request);
             if (!recaptcha.success || recaptcha.score != 0 && recaptcha.score < _minimumScore)
-                context.ModelState.AddModelError("Recaptcha", "There was an error validating the google recaptcha response. Please try again, or contact the site owner.");
+                context.ModelState.AddModelError("Recaptcha", _errorMessage);
 
             await next();
         }
