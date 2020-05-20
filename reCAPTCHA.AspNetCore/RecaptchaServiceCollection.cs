@@ -46,7 +46,9 @@ namespace reCAPTCHA.AspNetCore
             if (configurationSection == null)
                 throw new ArgumentNullException(nameof(configurationSection));
 
-            services.Configure<RecaptchaSettings>(configurationSection);
+            var recaptchaSettings = new RecaptchaSettings();
+            configurationSection.Bind(recaptchaSettings);
+            services.AddSingleton(recaptchaSettings);
             services.AddTransient<IRecaptchaService, RecaptchaService>();
 
             return services;

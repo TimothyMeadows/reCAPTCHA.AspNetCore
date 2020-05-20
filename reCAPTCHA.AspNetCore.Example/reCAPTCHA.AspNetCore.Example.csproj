@@ -7,7 +7,4 @@
   <ItemGroup>
     <ProjectReference Include="..\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore.csproj" />
   </ItemGroup>
-
-
-
 </Project>

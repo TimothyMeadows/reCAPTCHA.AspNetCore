@@ -25,8 +25,8 @@ namespace reCAPTCHA.AspNetCore.Example
             // Or Configure recaptcha via options
             //services.AddRecaptcha(options =>
             //{
-            //    options.SecretKey = "";
-            //    options.SiteKey = "";
+            //    options.SecretKey = "1";
+            //    options.SiteKey = "2";
             //});
         }
 

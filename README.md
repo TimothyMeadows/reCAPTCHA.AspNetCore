@@ -103,7 +103,7 @@ services.AddRecaptcha(options =>
 In order to prevent having to copy and paste your site key all over your view files (a nightmare to update later). You can inject your settings from the Startup method by adding the following code to top of your view file:
 
 ```csharp
-@inject IOptions<RecaptchaSettings> RecaptchaSettings
+@inject RecaptchaSettings RecaptchaSettings
 ```
 
 You can then freely include the Recaptcha script inside of forms you wish to vaidate later in your controller (supports multiple forms).
@@ -125,13 +125,6 @@ If you wish to trigger a JavaScript function on callback you can pass a method n
     alert('caw caw caw!');
   }
 </script>
-```
-
-You may find that you need to add a reference to Microsoft.Extensions.Options before you can use IOptions.
-
-```csharp
-@using Microsoft.Extensions.Options
-@using reCAPTCHA.AspNetCore
 ```
 
 You can see a tested example of usage in the [Contact.cshtml](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/blob/master/reCAPTCHA.AspNetCore.Example/Views/Home/Contact.cshtml) view. However you will need to configure it with your key information before running yourself. You should also take note of the allowed domains security policy in the Google Recaptcha docs.
