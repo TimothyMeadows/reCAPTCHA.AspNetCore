@@ -1,7 +1,6 @@
 ﻿@using reCAPTCHA.AspNetCore
 @using reCAPTCHA.AspNetCore.Versions;
 
-@model ContactModel
 @inject RecaptchaSettings RecaptchaSettings
 
 @{
@@ -22,18 +21,13 @@
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
 
-@using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
-<fieldset>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Message)
-        <br />
-        @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = "3", style = "width: 300px;" })
-    </div>
-    <div class="form-group">
-        @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings))
-    </div>
-    <button id="recaptcha" type="submit" class="btn btn-primary">Submit</button>
-</fieldset>
+    <fieldset>
+        <div class="form-group">
+            @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings))
+        </div>
+        <button id="recaptcha" type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
 }

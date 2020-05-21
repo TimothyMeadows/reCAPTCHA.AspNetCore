@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace reCAPTCHA.AspNetCore.Example
+namespace reCAPTCHA.AspNetCore.Tests
 {
     public class Startup
     {
@@ -20,36 +20,23 @@ namespace reCAPTCHA.AspNetCore.Example
         {
             services.AddControllersWithViews();
 
-            services.AddRecaptcha(Configuration.GetSection("RecaptchaSettings"));
-
-            // Or Configure recaptcha via options
-            //services.AddRecaptcha(options =>
-            //{
-            //    options.SecretKey = "1";
-            //    options.SiteKey = "2";
-            //});
+            services.AddRecaptcha(options =>
+            {
+                options.SecretKey = "SecretKey";
+                options.SiteKey = "SiteKey";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
