@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Text.Json;
@@ -8,21 +9,20 @@ namespace reCAPTCHA.AspNetCore
 {
     public class RecaptchaService : IRecaptchaService
     {
-        private readonly RecaptchaSettings recaptchaSettings;
+        public static HttpClient Client { get; private set; }
+        public readonly RecaptchaSettings RecaptchaSettings;
 
-        public RecaptchaService(RecaptchaSettings settings)
+        public RecaptchaService(IOptions<RecaptchaSettings> options)
         {
-            recaptchaSettings = settings;
-            Client = new HttpClient();
+            RecaptchaSettings = options.Value;
+            Client ??= new HttpClient();
         }
 
-        public RecaptchaService(RecaptchaSettings settings, HttpClient client)
+        public RecaptchaService(IOptions<RecaptchaSettings> options, HttpClient client)
         {
-            recaptchaSettings = settings;
+            RecaptchaSettings = options.Value;
             Client = client;
         }
-
-        public static HttpClient Client { get; private set; }
 
         public async Task<RecaptchaResponse> Validate(HttpRequest request, bool antiForgery = true)
         {
@@ -30,11 +30,11 @@ namespace reCAPTCHA.AspNetCore
                 throw new ValidationException("Google recaptcha response not found in form. Did you forget to include it?");
 
             var response = request.Form["g-recaptcha-response"];
-            var result = await Client.GetStringAsync($"https://{recaptchaSettings.Site}/recaptcha/api/siteverify?secret={recaptchaSettings.SecretKey}&response={response}");
+            var result = await Client.GetStringAsync($"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={response}");
             var captchaResponse = JsonSerializer.Deserialize<RecaptchaResponse>(result);
 
             if (captchaResponse.success && antiForgery)
-                if (captchaResponse.hostname?.ToLower() != request.Host.Host?.ToLower() && captchaResponse.hostname != "testkey.google.com")
+                if (captchaResponse.hostname?.ToLower() != request.Host.Host?.ToLower())
                     throw new ValidationException("Recaptcha host, and request host do not match. Forgery attempt?");
 
             return captchaResponse;
@@ -45,7 +45,7 @@ namespace reCAPTCHA.AspNetCore
             if (string.IsNullOrEmpty(responseCode))
                 throw new ValidationException("Google recaptcha response is empty?");
 
-            var result = await Client.GetStringAsync($"https://{recaptchaSettings.Site}/recaptcha/api/siteverify?secret={recaptchaSettings.SecretKey}&response={responseCode}");
+            var result = await Client.GetStringAsync($"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={responseCode}");
             var captchaResponse = JsonSerializer.Deserialize<RecaptchaResponse>(result);
 
             return captchaResponse;

@@ -20,6 +20,8 @@ namespace reCAPTCHA.AspNetCore.Tests
         {
             services.AddControllersWithViews();
 
+            //services.AddRecaptcha(Configuration.GetSection("RecaptchaSettings"));
+
             services.AddRecaptcha(options =>
             {
                 options.SecretKey = "SecretKey";

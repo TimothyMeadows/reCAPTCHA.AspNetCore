@@ -17,7 +17,7 @@ namespace reCAPTCHA.AspNetCore.Tests
             {
                 config.AddJsonFile("appsettings.json", false, true)
                     .AddEnvironmentVariables();
-            }).UseStartup<Startup2>();
+            }).UseStartup<Startup>();
 
             //var builder2 = Host.CreateDefaultBuilder(new string[] { })
             //    .ConfigureWebHostDefaults(webBuilder =>
