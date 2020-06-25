@@ -10,6 +10,7 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
     {
         public HomeController(IRecaptchaService recaptcha)
         {
+            return;
         }
 
         public IActionResult Index()

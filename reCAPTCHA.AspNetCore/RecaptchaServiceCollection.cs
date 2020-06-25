@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.Extensions.Options;
 
 namespace reCAPTCHA.AspNetCore
 {
@@ -26,7 +27,7 @@ namespace reCAPTCHA.AspNetCore
             var recaptchaSettings = new RecaptchaSettings();
             options.Invoke(recaptchaSettings);
 
-            services.AddSingleton(recaptchaSettings);
+            services.Configure(options);
             services.AddTransient<IRecaptchaService, RecaptchaService>();
 
             return services;
@@ -46,9 +47,7 @@ namespace reCAPTCHA.AspNetCore
             if (configurationSection == null)
                 throw new ArgumentNullException(nameof(configurationSection));
 
-            var recaptchaSettings = new RecaptchaSettings();
-            configurationSection.Bind(recaptchaSettings);
-            services.AddSingleton(recaptchaSettings);
+            services.Configure<RecaptchaSettings>(configurationSection);
             services.AddTransient<IRecaptchaService, RecaptchaService>();
 
             return services;
