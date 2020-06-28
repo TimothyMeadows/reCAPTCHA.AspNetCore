@@ -2,7 +2,6 @@
 @using reCAPTCHA.AspNetCore.Versions;
 
 @model ContactModel
-@inject RecaptchaSettings RecaptchaSettings
 
 @{
     ViewData["Title"] = "Contact";
@@ -24,7 +23,9 @@
 
 @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
 {
-    @Html.ValidationSummary(true)
+<div class="text-danger">
+	@Html.ValidationSummary()
+</div>
 <fieldset>
     <div class="form-group">
         @Html.LabelFor(model => model.Message)
@@ -32,7 +33,7 @@
         @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = "3", style = "width: 300px;" })
     </div>
     <div class="form-group">
-        @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings))
+		@(Html.Recaptcha<RecaptchaV2Checkbox>(@Model.CaptchaSettings))
     </div>
     <button id="recaptcha" type="submit" class="btn btn-primary">Submit</button>
 </fieldset>

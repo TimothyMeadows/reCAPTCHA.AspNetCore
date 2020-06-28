@@ -8,9 +8,13 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
 {
     public class HomeController : Controller
     {
+		public IRecaptchaService CaptchaSvc { get; set; }
+		public RecaptchaSettings CaptchSettings { get; set; }
+
         public HomeController(IRecaptchaService recaptcha)
         {
-            return;
+			CaptchSettings = recaptcha.RecaptchaSettings;
+			CaptchaSvc = recaptcha;
         }
 
         public IActionResult Index()
@@ -23,16 +27,22 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View(new ContactModel());
+			return View(new ContactModel { CaptchaSettings = CaptchSettings });
         }
 
         [HttpPost]
-        [ValidateRecaptcha(0.5)]
+		[ValidateRecaptcha(0.5, errorMessage: "reCaptcha Error")]
         public IActionResult Contact(ContactModel model)
         {
             ViewData["Message"] = "Your contact page.";
+			model.CaptchaSettings = CaptchSettings;
 
-            return View(!ModelState.IsValid ? model : new ContactModel());
+			if (!ModelState.IsValid)
+			{
+				return View(new ContactModel { CaptchaSettings = CaptchSettings });
+
+			}
+			return View(model);
         }
 
         public IActionResult Privacy()

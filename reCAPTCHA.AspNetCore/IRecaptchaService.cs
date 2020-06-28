@@ -8,6 +8,8 @@ namespace reCAPTCHA.AspNetCore
 {
     public interface IRecaptchaService
     {
+        RecaptchaSettings RecaptchaSettings { get; }
+
         Task<RecaptchaResponse> Validate(HttpRequest request, bool antiForgery = true);
 
         Task<RecaptchaResponse> Validate(string responseCode);

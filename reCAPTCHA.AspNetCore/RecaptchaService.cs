@@ -10,7 +10,7 @@ namespace reCAPTCHA.AspNetCore
     public class RecaptchaService : IRecaptchaService
     {
         public static HttpClient Client { get; private set; }
-        public readonly RecaptchaSettings RecaptchaSettings;
+        public RecaptchaSettings RecaptchaSettings { get; }
 
         public RecaptchaService(IOptions<RecaptchaSettings> options)
         {
