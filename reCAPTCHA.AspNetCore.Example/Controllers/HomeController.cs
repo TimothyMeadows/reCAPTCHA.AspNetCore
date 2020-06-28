@@ -8,16 +8,21 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IRecaptchaService _recaptcha;
+        private readonly double _minimumScore;
+        private readonly string _errorMessage;
+
         public HomeController(IRecaptchaService recaptcha)
         {
-            return;
+            _recaptcha = recaptcha;
+            _minimumScore = 0.5;
+            _errorMessage = "There was an error validating the google recaptcha response. Please try again, or contact the site owner.";
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
 
         public IActionResult Contact()
         {
@@ -31,6 +36,18 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
         public IActionResult Contact(ContactModel model)
         {
             ViewData["Message"] = "Your contact page.";
+
+            return View(!ModelState.IsValid ? model : new ContactModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact2(ContactModel model)
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            var recaptcha = await _recaptcha.Validate(Request);
+            if (!recaptcha.success || recaptcha.score != 0 && recaptcha.score < _minimumScore)
+                ModelState.AddModelError("Recaptcha", _errorMessage);
 
             return View(!ModelState.IsValid ? model : new ContactModel());
         }
