@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
@@ -10,6 +12,7 @@ namespace reCAPTCHA.AspNetCore.Tests
     public class RecaptchaJsonSectionConfigurationTests
     {
         private readonly HttpClient _httpClient;
+        private readonly TestServer _server;
 
         public RecaptchaJsonSectionConfigurationTests()
         {
@@ -19,14 +22,8 @@ namespace reCAPTCHA.AspNetCore.Tests
                     .AddEnvironmentVariables();
             }).UseStartup<Startup>();
 
-            //var builder2 = Host.CreateDefaultBuilder(new string[] { })
-            //    .ConfigureWebHostDefaults(webBuilder =>
-            //    {
-            //        webBuilder.UseStartup<Startup>();
-            //    }).Build();
-
-            var testServer = new TestServer(builder);
-            _httpClient = testServer.CreateClient();
+            _server = new TestServer(builder);
+            _httpClient = _server.CreateClient();
         }
 
         [Fact]
@@ -40,6 +37,20 @@ namespace reCAPTCHA.AspNetCore.Tests
 
             // Assert
             response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public void Registering_Recaptcha_Via_Json_Section_Configuration_Settings_Should_Not_Be_Null()
+        {
+            // Arrange
+
+            // Act
+            var settings = _server.Services.GetService<IOptions<RecaptchaSettings>>();
+
+            // Assert
+            Assert.NotNull(settings);
+            Assert.NotNull(settings.Value.SecretKey);
+            Assert.NotNull(settings.Value.SiteKey);
         }
     }
 }
