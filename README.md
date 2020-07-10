@@ -7,7 +7,7 @@ Google reCAPTCHA for .NET Core 3.x. The older .NET Core 2.x version can be found
 
 # Install
 
-From the a command prompt
+From a command prompt
 ```bash
 dotnet add package reCAPTCHA.AspNetCore
 ```
