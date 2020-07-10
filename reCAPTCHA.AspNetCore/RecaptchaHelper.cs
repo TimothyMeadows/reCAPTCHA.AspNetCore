@@ -40,14 +40,17 @@ namespace reCAPTCHA.AspNetCore
             {
                 case nameof(RecaptchaV2Checkbox):
                     var v2Checkbox = (RecaptchaV2Checkbox)instance;
+                    v2Checkbox.Settings ??= settings;
                     body = new Templates.RecaptchaV2Checkbox(v2Checkbox).TransformText();
                     break;
                 case nameof(RecaptchaV2Invisible):
                     var v2Invisible = (RecaptchaV2Invisible)instance;
+                    v2Invisible.Settings ??= settings;
                     body = new Templates.RecaptchaV2Invisible(v2Invisible).TransformText();
                     break;
                 case nameof(RecaptchaV3HiddenInput):
                     var v3 = (RecaptchaV3HiddenInput)instance;
+                    v3.Settings ??= settings;
                     body = new Templates.RecaptchaV3HiddenInput(v3).TransformText();
                     break;
                 default:
