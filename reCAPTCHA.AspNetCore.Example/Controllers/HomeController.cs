@@ -31,6 +31,20 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
             return View(new ContactModel());
         }
 
+        public IActionResult Contact2()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View(new ContactModel());
+        }
+
+        public IActionResult Contact3()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View(new ContactModel());
+        }
+
         [HttpPost]
         [ValidateRecaptcha(0.5)]
         public IActionResult Contact(ContactModel model)
@@ -48,6 +62,14 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
             var recaptcha = await _recaptcha.Validate(Request);
             if (!recaptcha.success || recaptcha.score != 0 && recaptcha.score < _minimumScore)
                 ModelState.AddModelError("Recaptcha", _errorMessage);
+
+            return View(!ModelState.IsValid ? model : new ContactModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact3(ContactModel model)
+        {
+            ViewData["Message"] = "Your contact page.";
 
             return View(!ModelState.IsValid ? model : new ContactModel());
         }
