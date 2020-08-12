@@ -9,19 +9,12 @@ namespace reCAPTCHA.AspNetCore
 {
     public class RecaptchaService : IRecaptchaService
     {
-        public static HttpClient Client { get; private set; }
+        private static readonly HttpClient Client = new HttpClient();
         public readonly RecaptchaSettings RecaptchaSettings;
 
         public RecaptchaService(IOptions<RecaptchaSettings> options)
         {
             RecaptchaSettings = options.Value;
-            Client ??= new HttpClient();
-        }
-
-        public RecaptchaService(IOptions<RecaptchaSettings> options, HttpClient client)
-        {
-            RecaptchaSettings = options.Value;
-            Client = client;
         }
 
         public async Task<RecaptchaResponse> Validate(HttpRequest request, bool antiForgery = true)
