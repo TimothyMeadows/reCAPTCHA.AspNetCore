@@ -18,7 +18,7 @@ namespace reCAPTCHA.AspNetCore.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+    #line 1 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class RecaptchaV3HiddenInput : RecaptchaV3HiddenInputBase
     {
@@ -28,87 +28,99 @@ namespace reCAPTCHA.AspNetCore.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n<input id=\"g-recaptcha-response\" name=\"g-recaptcha-response\" type=\"hidden\" valu" +
-                    "e=\"\" />\r\n<script ");
+            this.Write("\r\n<input id=\"");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 7 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Id));
+            
+            #line default
+            #line hidden
+            this.Write("\" name=\"g-recaptcha-response\" type=\"hidden\" value=\"\" />\r\n<script ");
+            
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
  if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
             
             #line default
             #line hidden
             this.Write("script-src=\"");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
             
             #line default
             #line hidden
             this.Write("\"");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
 }
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
  if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {
             
             #line default
             #line hidden
             this.Write("frame-src=\"");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.ContentSecurityPolicy));
             
             #line default
             #line hidden
             this.Write("\"");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
 }
             
             #line default
             #line hidden
             this.Write(" src=\"https://");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.Site));
             
             #line default
             #line hidden
             this.Write("/recaptcha/api.js?render=");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.SiteKey));
             
             #line default
             #line hidden
             this.Write("&hl=");
             
-            #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 8 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Language));
             
             #line default
             #line hidden
-            this.Write("\"></script>\r\n<script>\r\n\tif (typeof grecaptcha !== \'undefined\') {\r\n\t\tgrecaptcha.re" +
-                    "ady(function () {\r\n\t\t\tgrecaptcha.execute(\'");
+            this.Write("\" async defer></script>\r\n<script>\r\n\tif (typeof grecaptcha !== \'undefined\') {\r\n\t\tg" +
+                    "recaptcha.ready(function () {\r\n\t\t\tgrecaptcha.execute(\'");
             
-            #line 12 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 12 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.SiteKey));
             
             #line default
             #line hidden
             this.Write("\', { \'action\': \'");
             
-            #line 12 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 12 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Action));
             
             #line default
             #line hidden
-            this.Write("\' }).then(function (token) {\r\n\t\t\t\tdocument.getElementById(\'g-recaptcha-response\')" +
-                    ".value = token;\r\n\t\t\t});\r\n\t\t});\r\n\t}\r\n</script>");
+            this.Write("\' }).then(function (token) {\r\n\t\t\t\tdocument.getElementById(\'");
+            
+            #line 13 "D:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Id));
+            
+            #line default
+            #line hidden
+            this.Write("\').value = token;\r\n\t\t\t});\r\n\t\t});\r\n\t}\r\n</script>");
             return this.GenerationEnvironment.ToString();
         }
     }
