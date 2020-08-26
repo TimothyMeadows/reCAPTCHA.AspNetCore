@@ -10,4 +10,4 @@ If a feature only helps your project. It will be rejected. If you can justify th
 
 # Bugs
 
-Bug fixes will be audited to the best of my ability and merged when accepted. Depending on the changes needed to fix the bug. You might be required to update README.md with either an example, or fix to existing example. If a bug is created from a feature you added. You are encourged to fix the bug yourself. If you need help please place the help wanted tag, and @ me in the comments.
+Bug fixes will be audited to the best of my ability and merged when accepted. Depending on the changes needed to fix the bug. You might be required to update README.md with either an example, or fix to existing example. If a bug is created from a feature you added. You are encourged to fix the bug yourself. If you need help please place the help wanted tag, and @TimothyMeadows in the comments.
