@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace reCAPTCHA.AspNetCore.Attributes
 {
+
     /// <summary>
     /// Validates Recaptcha submitted by a form using: @Html.Recaptcha(RecaptchaSettings.Value)
     /// </summary>
