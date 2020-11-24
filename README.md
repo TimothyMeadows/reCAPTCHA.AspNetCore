@@ -173,3 +173,7 @@ Users who suffer from censorship concerns can now bypass the libraries default o
     "SiteKey": "paste site key here"
   }
 ```
+
+# Unique Issues / Solutions
+
+[IsAsync empty response](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/issues/81)
