@@ -176,5 +176,5 @@ Users who suffer from censorship concerns can now bypass the libraries default o
 
 # Unique Issues / Solutions
 
-[Testing / Localhost Development](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/issues/82)
-[IsAsync empty response](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/issues/81)
+- [Testing / Localhost Development](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/issues/82)
+- [IsAsync empty response](https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/issues/81)
