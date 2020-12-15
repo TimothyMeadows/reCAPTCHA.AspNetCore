@@ -106,7 +106,7 @@ In order to prevent having to copy and paste your site key all over your view fi
 @inject IOptions<RecaptchaSettings> RecaptchaSettings
 ```
 
-You can then freely include the Recaptcha script inside of forms you wish to vaidate later in your controller (supports multiple forms).
+You can then freely include the Recaptcha script inside of forms you wish to validate later in your controller (supports multiple forms).
 ```csharp
 @using (Html.BeginForm("SomeMethod", "SomeController")) {
   @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings?.Value))
@@ -125,6 +125,15 @@ If you wish to trigger a JavaScript function on callback you can pass a method n
     alert('caw caw caw!');
   }
 </script>
+```
+
+You can specify the language in the optional model.
+
+```csharp
+@(Html.Recaptcha(RecaptchaSettings?.Value, new RecaptchaV2Checkbox
+{
+    Language = System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0,2)
+}))
 ```
 
 You may find that you need to add a reference to Microsoft.Extensions.Options before you can use IOptions.
