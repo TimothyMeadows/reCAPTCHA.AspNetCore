@@ -85,7 +85,7 @@ namespace reCAPTCHA.AspNetCore.Example.Controllers
         [ValidateRecaptcha(0.5)]
         public IActionResult Contact4(ContactModel model)
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = $"Your contact page with a reCAPTCHA score of {Request.GetCachedRecaptchaResponse().score}.";
 
             return View(!ModelState.IsValid ? model : new ContactModel());
         }

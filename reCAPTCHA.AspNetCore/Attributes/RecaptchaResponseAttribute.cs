@@ -44,7 +44,7 @@ namespace reCAPTCHA.AspNetCore.Attributes
 
 			var validationservice = validationContext.GetService<IRecaptchaService>();
 
-            if(validationservice is null)
+            if (validationservice is null)
                 throw new ConfigurationErrorsException($"{typeof(IRecaptchaService).Assembly.GetName().Name} has not been configured");
 
 			var response = validationservice.Validate(responseCode).Result;
