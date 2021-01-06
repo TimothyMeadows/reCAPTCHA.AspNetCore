@@ -22,9 +22,9 @@ namespace reCAPTCHA.AspNetCore
             if (!request.Form.ContainsKey("g-recaptcha-response")) // error if no reason to do anything, this is to alert developers they are calling it without reason.
                 throw new ValidationException("Google recaptcha response not found in form. Did you forget to include it?");
 
-            var response = request.Form["g-recaptcha-response"];
-            var result = await Client.GetStringAsync($"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={response}");
-            var captchaResponse = JsonSerializer.Deserialize<RecaptchaResponse>(result);
+            if (request.GetCachedRecaptchaResponse() == null)
+                request.HttpContext.Items["RecaptchaResponse"] = await Validate(request.Form["g-recaptcha-response"]);
+            RecaptchaResponse captchaResponse = request.GetCachedRecaptchaResponse();
 
             if (captchaResponse.success && antiForgery)
                 if (captchaResponse.hostname?.ToLower() != request.Host.Host?.ToLower() && captchaResponse.hostname != "testkey.google.com")
