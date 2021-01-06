@@ -35,13 +35,11 @@ namespace reCAPTCHA.AspNetCore
 
         public async Task<RecaptchaResponse> Validate(string responseCode)
         {
-            if (string.IsNullOrEmpty(responseCode))
-                throw new ValidationException("Google recaptcha response is empty?");
-
-            var result = await Client.GetStringAsync($"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={responseCode}");
-            var captchaResponse = JsonSerializer.Deserialize<RecaptchaResponse>(result);
-
-            return captchaResponse;
+            if (string.IsNullOrWhiteSpace(responseCode))
+                throw new ValidationException("Google reCAPTCHA response is empty");
+            string result = await Client.GetStringAsync(
+                $"https://{RecaptchaSettings.Site}/recaptcha/api/siteverify?secret={RecaptchaSettings.SecretKey}&response={responseCode}");
+            return JsonSerializer.Deserialize<RecaptchaResponse>(result);
         }
     }
 }
