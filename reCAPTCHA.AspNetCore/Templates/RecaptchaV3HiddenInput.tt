@@ -1,17 +1,19 @@
-﻿<#@ template language="C#" #>
+<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
 <input id="<#= Model.Id #>" name="g-recaptcha-response" type="hidden" value="" />
-<script <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>script-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>frame-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> src="https://<#= Model.Settings.Site #>/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>&hl=<#= Model.Language #>" <# if (Model.IsAsync) {#>async defer<#}#> ></script>
+<script <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>script-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>frame-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> src="https://<#= Model.Settings.Site #>/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>&hl=<#= Model.Language #>&onload=loaded" <# if (Model.IsAsync) {#>async defer<#}#> ></script>
 <script>
+function loaded(){
 	if (typeof grecaptcha !== 'undefined') {
 		grecaptcha.ready(function () {
 			grecaptcha.execute('<#= Model.Settings.SiteKey #>', { 'action': '<#= Model.Action #>' }).then(function (token) {
 				document.getElementById('<#= Model.Id #>').value = token;
 			});
 		});
-	}
+	} 
+}
 </script>
