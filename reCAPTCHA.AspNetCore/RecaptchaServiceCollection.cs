@@ -24,9 +24,6 @@ namespace reCAPTCHA.AspNetCore
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
 
-            var recaptchaSettings = new RecaptchaSettings();
-            options.Invoke(recaptchaSettings);
-
             services.Configure(options);
             services.AddTransient<IRecaptchaService, RecaptchaService>();
 

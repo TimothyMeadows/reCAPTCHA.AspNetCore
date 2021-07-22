@@ -1,7 +1,8 @@
-﻿@using reCAPTCHA.AspNetCore
+﻿@using Microsoft.Extensions.Options
+@using reCAPTCHA.AspNetCore
 @using reCAPTCHA.AspNetCore.Versions;
 
-@inject RecaptchaSettings RecaptchaSettings
+@inject IOptions<RecaptchaSettings> RecaptchaSettingsOption
 
 @{
     ViewData["Title"] = "Contact";
@@ -26,7 +27,7 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <div class="form-group">
-            @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings))
+            @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettingsOption.Value))
         </div>
         <button id="recaptcha" type="submit" class="btn btn-primary">Submit</button>
     </fieldset>
