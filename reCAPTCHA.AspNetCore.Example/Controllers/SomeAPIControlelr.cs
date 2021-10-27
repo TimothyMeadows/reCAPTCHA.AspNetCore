@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace reCAPTCHA.AspNetCore.Example.Controllers
 {
-    [ApiController]
+    [ApiController, Route("SomeApi")]
     public class SomeApiController : Controller
     {
         [HttpGet]

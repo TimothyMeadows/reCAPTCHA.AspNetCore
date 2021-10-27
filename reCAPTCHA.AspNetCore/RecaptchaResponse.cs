@@ -1,11 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace reCAPTCHA.AspNetCore
 {
     public class RecaptchaResponse
     {
+
+        public RecaptchaResponse(bool success)
+        {
+            this.success = success;
+        }
+
         public bool success { get; set; }
         public double score { get; set; }
         public string action { get; set; }
