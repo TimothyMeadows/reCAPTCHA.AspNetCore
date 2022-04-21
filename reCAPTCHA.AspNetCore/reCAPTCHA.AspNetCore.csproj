@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.10</Version>
+    <Version>3.0.12</Version>
     <Authors>Timothy D Meadows II</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/TimothyMeadows/reCAPTCHA.AspNetCore/</PackageProjectUrl>
