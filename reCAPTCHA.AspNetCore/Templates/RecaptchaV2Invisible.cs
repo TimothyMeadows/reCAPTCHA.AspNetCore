@@ -28,49 +28,70 @@ namespace reCAPTCHA.AspNetCore.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n<script>\r\n\tfunction _");
+            this.Write("\n<script ");
+            
+            #line 7 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+ if (!string.IsNullOrEmpty(Model.Settings.Nonce)) {
+            
+            #line default
+            #line hidden
+            this.Write("nonce=\"");
+            
+            #line 7 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.Nonce));
+            
+            #line default
+            #line hidden
+            this.Write("\"");
+            
+            #line 7 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write(">\n\tfunction _");
             
             #line 8 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Uid.ToString().Replace("-", "_")));
             
             #line default
             #line hidden
-            this.Write("() {\r\n\t\tif (typeof grecaptcha !== \'undefined\') {\r\n\t\t\tgrecaptcha.render(\'");
+            this.Write("() {\n\t\tif (typeof grecaptcha !== 'undefined') {\n\t\t\tgrecaptcha.render('");
             
             #line 10 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Id));
             
             #line default
             #line hidden
-            this.Write("\', {\r\n\t\t\t\t\'sitekey\' : \'");
+            this.Write("', {\n\t\t\t\t'sitekey' : '");
             
             #line 11 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.SiteKey));
             
             #line default
             #line hidden
-            this.Write("\',\r\n\t\t\t\t\'callback\' : _");
+            this.Write("',\n\t\t\t\t'callback' : _");
             
             #line 12 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Uid.ToString().Replace("-", "_")));
             
             #line default
             #line hidden
-            this.Write("_,\r\n\t\t\t\t");
+            this.Write("_,\n\t\t\t\t");
             
             #line 13 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
  if (!string.IsNullOrEmpty(Model.ErrorCallback)) { 
             
             #line default
             #line hidden
-            this.Write("\t\t\t\t\'error-callback\' : \'");
+            this.Write("\t\t\t\t'error-callback' : '");
             
             #line 14 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.ErrorCallback));
             
             #line default
             #line hidden
-            this.Write("\',\r\n\t\t\t\t");
+            this.Write("',\n\t\t\t\t");
             
             #line 15 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
  } 
@@ -84,43 +105,42 @@ namespace reCAPTCHA.AspNetCore.Templates
             
             #line default
             #line hidden
-            this.Write("\t\t\t\t\'expired-callback\' : \'");
+            this.Write("\t\t\t\t'expired-callback' : '");
             
             #line 17 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.ExpiredCallback));
             
             #line default
             #line hidden
-            this.Write("\',\r\n\t\t\t\t");
+            this.Write("',\n\t\t\t\t");
             
             #line 18 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\t\t\t});\r\n\r\n\t\t\tdocument.getElementById(\'");
+            this.Write("\t\t\t});\n\n\t\t\tdocument.getElementById('");
             
             #line 21 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Id));
             
             #line default
             #line hidden
-            this.Write("\').onclick = function(e) {\r\n\t\t\t\te.preventDefault();\r\n\t\t\t\tgrecaptcha.execute();\r\n\t" +
-                    "\t\t};\r\n\t\t}\r\n\t}\r\n\r\n\tfunction _");
+            this.Write("').onclick = function(e) {\n\t\t\t\te.preventDefault();\n\t\t\t\tgrecaptcha.execute();\n\t\t\t};\n\t\t}\n\t}\n\n\tfunction _");
             
             #line 28 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Uid.ToString().Replace("-", "_")));
             
             #line default
             #line hidden
-            this.Write("_(token) {\r\n\t\tdocument.getElementById(\'");
+            this.Write("_(token) {\n\t\tdocument.getElementById('");
             
             #line 29 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Id));
             
             #line default
             #line hidden
-            this.Write("\').form.submit();\r\n\t\t");
+            this.Write("').form.submit();\n\t\t");
             
             #line 30 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
  if (!string.IsNullOrEmpty(Model.SuccessCallback)) { 
@@ -134,14 +154,14 @@ namespace reCAPTCHA.AspNetCore.Templates
             
             #line default
             #line hidden
-            this.Write("(token);\r\n\t\t");
+            this.Write("(token);\n\t\t");
             
             #line 32 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\t}\r\n</script>\r\n<script ");
+            this.Write("\t}\n</script>\n<script ");
             
             #line 35 "E:\Repository\TimothyMeadows\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV2Invisible.tt"
  if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {

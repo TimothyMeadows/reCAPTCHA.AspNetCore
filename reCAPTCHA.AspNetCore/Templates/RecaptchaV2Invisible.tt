@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-<script>
+<script <# if (!string.IsNullOrEmpty(Model.Settings.Nonce)) {#>nonce="<#= Model.Settings.Nonce #>"<#}#>>
 	function _<#= Model.Uid.ToString().Replace("-", "_") #>() {
 		if (typeof grecaptcha !== 'undefined') {
 			grecaptcha.render('<#= Model.Id #>', {

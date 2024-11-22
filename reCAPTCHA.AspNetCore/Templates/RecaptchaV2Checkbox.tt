@@ -2,7 +2,7 @@
 <#@ assembly name="System.Core" #>
 
 <div id="<#= Model.Uid #>" class="g-recaptcha" data-sitekey="<#= Model.Settings.SiteKey #>" <# if (!string.IsNullOrEmpty(Model.SuccessCallback)) {#>data-callback="<#= Model.SuccessCallback #>"<#}#> <# if (!string.IsNullOrEmpty(Model.ErrorCallback)) {#>data-error-callback="<#= Model.ErrorCallback #>"<#}#> <# if (!string.IsNullOrEmpty(Model.ExpiredCallback)) {#>data-expired-callback="<#= Model.ExpiredCallback #>"<#}#>></div>
-<script>
+<script <# if (!string.IsNullOrEmpty(Model.Settings.Nonce)) {#>nonce="<#= Model.Settings.Nonce #>"<#}#>>
 	function _<#= Model.Uid.ToString().Replace("-", "_") #>() {
 		if (typeof grecaptcha !== 'undefined')
 			grecaptcha.render('<#= Model.Uid #>', {

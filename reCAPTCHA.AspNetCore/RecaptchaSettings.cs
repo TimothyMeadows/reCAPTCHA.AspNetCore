@@ -11,6 +11,10 @@
         /// </summary>
         public string ContentSecurityPolicy { get; set; } = string.Empty;
         /// <summary>
+        /// Nonce value that will be added as attribute to the inline script to allow it to comply with content security policy when using nonce
+        /// </summary>
+        public string Nonce { get; set; }
+        /// <summary>
         /// Google Recaptcha Secret Key
         /// </summary>
         public string SecretKey { get; set; }
