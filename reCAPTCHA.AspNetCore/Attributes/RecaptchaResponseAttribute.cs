@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,12 +11,12 @@ namespace reCAPTCHA.AspNetCore.Attributes
     /// <seealso cref="ValidationAttribute" />
     /// <seealso cref="IRecaptchaService.Validate(string)"/>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field)]
-	public class RecaptchaResponseAttribute : ValidationAttribute
-	{
-		/// <summary>
-		/// Gets a value that indicates whether the attribute requires validation context.
-		/// </summary>
-		public override bool RequiresValidationContext => true;
+    public class RecaptchaResponseAttribute : ValidationAttribute
+    {
+        /// <summary>
+        /// Gets a value that indicates whether the attribute requires validation context.
+        /// </summary>
+        public override bool RequiresValidationContext => true;
 
         /// <summary>
         /// Gets or sets the minimum score.
@@ -37,19 +37,19 @@ namespace reCAPTCHA.AspNetCore.Attributes
         /// </returns>
         /// <exception cref="ConfigurationErrorsException">When reCaptcha has not been configured.</exception>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-		{
-			if (!(value is string responseCode)
-					|| string.IsNullOrWhiteSpace(responseCode))
-				return null;
+        {
+            if (!(value is string responseCode)
+                    || string.IsNullOrWhiteSpace(responseCode))
+                return null;
 
-			var validationservice = validationContext.GetService<IRecaptchaService>();
+            var validationservice = validationContext.GetService<IRecaptchaService>();
 
-            if(validationservice is null)
+            if (validationservice is null)
                 throw new ConfigurationErrorsException($"{typeof(IRecaptchaService).Assembly.GetName().Name} has not been configured");
 
-			var response = validationservice.Validate(responseCode).Result;
+            var response = validationservice.Validate(responseCode).Result;
 
-            if (response.success 
+            if (response.success
                 && (response.score == 0 || response.score >= MinimumScore))
 
                 return ValidationResult.Success;
@@ -58,5 +58,5 @@ namespace reCAPTCHA.AspNetCore.Attributes
 
                 return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
         }
-	}
+    }
 }
